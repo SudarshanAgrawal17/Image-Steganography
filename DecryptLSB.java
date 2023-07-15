@@ -5,16 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
 
 public class DecryptLSB {
     public static String Decrypt(){
-        String directory = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-        String newImageFileString = directory + "\\export.png";
-        File newImagFile = new File(newImageFileString);
+        File newImageFile = FileChooser.MakeFileChooser();
         String message = "";
         try {
-            BufferedImage image = ImageIO.read(newImagFile);
+            BufferedImage image = ImageIO.read(newImageFile);
             Pixel[] pixels = GetPixelArray(image);
             message = DecodeMessageFromPixels(pixels);
             // System.out.println();
